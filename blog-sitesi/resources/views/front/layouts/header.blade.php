@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Gülcan Karip- Blog Sayfası</title>
+    <title>@yield('title','Gülcan Karip - Blog Sitesi')</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{asset('front/')}}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -58,7 +58,7 @@
     </nav>
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url({{asset('front/')}}/img/home-bg.jpg')">
+    <header class="masthead" style="background-image: url('{{asset('front/')}}/img/home-bg.jpg')">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">

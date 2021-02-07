@@ -1,8 +1,12 @@
     <!-- Main Content -->
 
     @extends('front.layouts.master')
+    @section('title')
+    Kişisel Blog - Anasayfa
+    @endsection
     @section('content')
-    <div class="col-lg-8 col-md-10 mx-auto">
+    
+    <div class="col-lg-8 col-md-9 mx-auto">
         <div class="post-preview">
             <a href="post.html">
                 <h2 class="post-title">
@@ -63,6 +67,13 @@
         <!-- Pager -->
         <div class="clearfix">
             <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="list-group">
+            <a href="#" class="list-group-item">Çocuklar  <span class="badge bg-success">12</span></a>
+            <a href="#" class="list-group-item">Günlük Hayat</a>
+            <a href="#" class="list-group-item">Yazılım</a>
         </div>
     </div>
     @endsection
