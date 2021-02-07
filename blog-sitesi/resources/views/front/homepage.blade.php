@@ -1,4 +1,7 @@
     <!-- Main Content -->
+
+    @extends('front.layouts.master')
+    @section('content')
     <div class="col-lg-8 col-md-10 mx-auto">
         <div class="post-preview">
             <a href="post.html">
@@ -62,3 +65,4 @@
             <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
         </div>
     </div>
+    @endsection
