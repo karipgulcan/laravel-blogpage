@@ -5,7 +5,7 @@
     Kişisel Blog - Anasayfa
     @endsection
     @section('content')
-    
+
     <div class="col-lg-8 col-md-9 mx-auto">
         <div class="post-preview">
             <a href="post.html">
@@ -70,10 +70,24 @@
         </div>
     </div>
     <div class="col-md-3">
-        <div class="list-group">
-            <a href="#" class="list-group-item">Çocuklar  <span class="badge bg-success">12</span></a>
-            <a href="#" class="list-group-item">Günlük Hayat</a>
-            <a href="#" class="list-group-item">Yazılım</a>
+        <div class="card">
+            <div class="card-header">
+                Kategoriler
+            </div>
+            <div class="list-group">
+                <li class="list-group-item">
+                <a href="#">Çocuklar </a> <span class="badge bg-success float-right">12</span>
+                </li>
+
+                <li class="list-group-item">
+                <a href="#">Günlük Hayat </a> <span class="badge bg-success float-right">12</span>
+                </li>
+
+                <li class="list-group-item">
+                <a href="#">Yazılım </a> <span class="badge bg-success float-right">12</span>
+                </li>
+            
+            </div>
         </div>
     </div>
     @endsection
