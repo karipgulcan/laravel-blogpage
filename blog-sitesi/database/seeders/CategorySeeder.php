@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
-use DB; // database bağlantısını kurduk.
+use Illuminate\Support\Facades\DB; // database bağlantısını kurduk.
 
 class CategorySeeder extends Seeder
 {
@@ -14,12 +15,12 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $categoris=['Çocuklar ve Etkinlik','Eğlence','Yazılım','Dene&Yap'];
+        $categories=['Çocuklar ve Etkinlik','Eğlence','Yazılım','Dene&Yap'];
 
-        foreach($categoris as $category){
+        foreach($categories as $category){
             DB::table('categories')->insert([
                 'name'=>$category,
-                'slug'=> str_slug($category)
+                'slug'=>str::slug($category) // slug str_slug() şeklinde çalışmıyor update edilmiş
             ]);
         }
     }
