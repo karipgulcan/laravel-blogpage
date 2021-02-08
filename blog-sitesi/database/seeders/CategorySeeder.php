@@ -20,7 +20,10 @@ class CategorySeeder extends Seeder
         foreach($categories as $category){
             DB::table('categories')->insert([
                 'name'=>$category,
-                'slug'=>str::slug($category) // slug str_slug() şeklinde çalışmıyor update edilmiş
+                'slug'=>str::slug($category), // slug str_slug() şeklinde çalışmıyor update edilmiş
+                'created_at'=>now(),
+                'updated_at'=>now(),
+
             ]);
         }
     }
