@@ -24,7 +24,7 @@ class ArticleSeeder extends Seeder
                 'title'=>$title,
                 'image'=>$faker->imageUrl(800,400,'cats',true,'Faker',true, 'Gülcan Karip'),
                 'content'=>$faker->paragraph(6),
-                'slug'=>str::slug($faker->title),
+                'slug'=>str::slug($title),
                 'created_at'=>now(),
                 'updated_at'=>now()
 
