@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+/* Nomalde bu şekilde kullanılıyor. Ama Controllerdan çalıştırmak istiyorsak yani dinamik bir şeyler yapıyorsak aşağıdaki şekilde kullanıyoruz.
 Route::get('/', function () {
     return view('front.homepage');
 });
+
+*/
+
+Route::get('/','App\Http\Controllers\Front\Homepage@index')->name('homepage');

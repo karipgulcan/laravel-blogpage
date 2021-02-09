@@ -69,25 +69,5 @@
             <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-header">
-                Kategoriler
-            </div>
-            <div class="list-group">
-                <li class="list-group-item">
-                <a href="#">Çocuklar </a> <span class="badge bg-success float-right">12</span>
-                </li>
-
-                <li class="list-group-item">
-                <a href="#">Günlük Hayat </a> <span class="badge bg-success float-right">12</span>
-                </li>
-
-                <li class="list-group-item">
-                <a href="#">Yazılım </a> <span class="badge bg-success float-right">12</span>
-                </li>
-            
-            </div>
-        </div>
-    </div>
+    @include('front.widgets.categoryWidget')
     @endsection
