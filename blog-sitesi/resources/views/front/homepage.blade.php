@@ -5,25 +5,26 @@
     Kişisel Blog - Anasayfa
     @endsection
     @section('content')
-
     <div class="col-lg-8 col-md-9 mx-auto">
         @foreach($articles as $article)
         <div class="post-preview">
-            <a href="post.html">
+            <a href="{{route('single',$article->slug)}}">
                 <h2 class="post-title">
                     {{$article->title}}
                 </h2>
+                <img src="{{$article->image}}" alt="">
                 <h3 class="post-subtitle">
                     {{Str::limit($article->content),12}}
                 </h3>
             </a>
-            <p class="post-meta">
-                <a href="#">{{$article->category_id}}</a>
-                {{($article->created_at)}}
+            <p class="post-meta"> Kategori: <a href="#">{{$article->category_id}}</a>
+                <span class="float-right">{{$article->created_at->diffForHumans()}}</span>
             </p>
         </div>
-        @endforeach
+        @if(!$loop->last) <!-- Eğer döngünün sonuysa çalışmasın. Yani son posttan sonra hr koymasın diye koyduk-->
         <hr>
+        @endif
+        @endforeach
         <!-- Pager -->
         <div class="clearfix">
             <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
