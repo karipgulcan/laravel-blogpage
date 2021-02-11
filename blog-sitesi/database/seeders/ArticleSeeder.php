@@ -11,7 +11,7 @@ class ArticleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
+     * articleSeeder
      * @return void
      */
     public function run()
