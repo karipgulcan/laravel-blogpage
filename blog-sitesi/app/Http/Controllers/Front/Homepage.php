@@ -30,7 +30,8 @@ class Homepage extends Controller
 
     public function category($slug){
         $category=Category::where('slug',$slug)->first() ?? abort(403,'Böyle bir kategori henüz eklenmedi.');
-        $date['category']=$category;
-        return view('front/category',$data);
+        $data['category']=$category;
+        $data['articles']=Article::where('category_id', $category->id)->orderBy('created_at','DESC')->get();
+        return view('front.category',$data);
     }
 }
