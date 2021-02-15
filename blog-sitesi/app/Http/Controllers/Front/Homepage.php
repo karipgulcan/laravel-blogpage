@@ -19,9 +19,10 @@ class Homepage extends Controller
 
     public function single($slug){
 
-        $data['article']=Article::where('slug',$slug)->first() ?? abort(403,'Böyle bir yazı henüz yazılmadı.');
+        $article=Article::where('slug',$slug)->first() ?? abort(403,'Böyle bir yazı henüz yazılmadı.');
         //dd($article);
-
+        $article->increment('hit');
+        $data['article']=$article;
         $data['categories']=Category::inRandomOrder()->get();
         return view('front.single',$data);
     }
