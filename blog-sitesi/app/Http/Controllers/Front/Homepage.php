@@ -19,12 +19,18 @@ class Homepage extends Controller
 
     public function single($category,$slug){
 
-        Category::where('slug',$slug)->first() ?? abort(403,'Böyle bir kategori henüz eklenmedi.');
+        Category::where('slug',$category)->first() ?? abort(403,'Böyle bir kategori henüz eklenmedi.');
         $article=Article::where('slug',$slug)->first() ?? abort(403,'Böyle bir yazı henüz yazılmadı.');
         //dd($article);
         $article->increment('hit');
         $data['article']=$article;
         $data['categories']=Category::inRandomOrder()->get();
         return view('front.single',$data);
+    }
+
+    public function category($slug){
+        $category=Category::where('slug',$slug)->first() ?? abort(403,'Böyle bir kategori henüz eklenmedi.');
+        $date['category']=$category;
+        return view('front/category',$data);
     }
 }
