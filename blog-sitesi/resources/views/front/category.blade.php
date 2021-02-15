@@ -1,7 +1,7 @@
     <!-- Main Content -->
 
     @extends('front.layouts.master')
-    @section('title','Anasayfa')
+    @section('title',$category->name)
     @section('content')
     <div class="col-lg-8 col-md-9 mx-auto">
         @foreach($articles as $article)
@@ -15,7 +15,7 @@
                     {!!Str::limit($article->content),12!!}
                 </h3>
             </a>
-            <p class="post-meta"> Kategori: <a href="#">{{$article->category_id}}</a>
+            <p class="post-meta"> Kategori: <a href="#">{{$article->getCategory->name}}</a>
                 <span class="float-right">{{$article->created_at->diffForHumans()}}</span>
             </p>
         </div>
