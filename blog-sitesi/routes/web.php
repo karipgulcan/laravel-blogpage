@@ -22,4 +22,5 @@ Route::get('/', function () {
 */
 
 Route::get('/','App\Http\Controllers\Front\Homepage@index')->name('homepage');
+Route::get('/kategori/{categori}', 'App\Http\Controllers\Front\Homepage@category')->name('category'); // bu satırı bir alta alınca çalışmıyor sebebi is kategoriler tablosunda arıyıor bulamıyor hata veriyor
 Route::get('/{category}/{slug}','App\Http\Controllers\Front\Homepage@single')->name('single');
