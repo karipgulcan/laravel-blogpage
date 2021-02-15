@@ -8,13 +8,13 @@
     <div class="col-lg-8 col-md-9 mx-auto">
         @foreach($articles as $article)
         <div class="post-preview">
-            <a href="{{route('single',$article->slug)}}">
+            <a href="{{route('single',[$article->getCategory->slug,$article->slug])}}">
                 <h2 class="post-title">
                     {{$article->title}}
                 </h2>
                 <img src="{{$article->image}}" alt="">
                 <h3 class="post-subtitle">
-                    {{Str::limit($article->content),12}}
+                    {{!!Str::limit($article->content),12!!}}
                 </h3>
             </a>
             <p class="post-meta"> Kategori: <a href="#">{{$article->category_id}}</a>
@@ -27,7 +27,7 @@
         @endforeach
         <!-- Pager -->
         <div class="clearfix">
-            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+            <a class="btn btn-primary float-right" href="#">Diğer Yazılar &rarr;</a>
         </div>
     </div>
     @include('front.widgets.categoryWidget')
