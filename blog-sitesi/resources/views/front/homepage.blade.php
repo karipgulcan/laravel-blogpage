@@ -1,9 +1,7 @@
     <!-- Main Content -->
 
     @extends('front.layouts.master')
-    @section('title')
-    Kişisel Blog - Anasayfa
-    @endsection
+    @section('title','Anasayfa')
     @section('content')
     <div class="col-lg-8 col-md-9 mx-auto">
         @foreach($articles as $article)
@@ -14,7 +12,7 @@
                 </h2>
                 <img src="{{$article->image}}" alt="">
                 <h3 class="post-subtitle">
-                    {{!!Str::limit($article->content),12!!}}
+                    {!!Str::limit($article->content),12!!}
                 </h3>
             </a>
             <p class="post-meta"> Kategori: <a href="#">{{$article->category_id}}</a>
@@ -27,7 +25,7 @@
         @endforeach
         <!-- Pager -->
         <div class="clearfix">
-            <a class="btn btn-primary float-right" href="#">Diğer Yazılar &rarr;</a>
+            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
         </div>
     </div>
     @include('front.widgets.categoryWidget')
