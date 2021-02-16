@@ -15,7 +15,7 @@
                     {!!Str::limit($article->content),12!!}
                 </h3>
             </a>
-            <p class="post-meta"> Kategori: <a href="#">{{$article->category_id}}</a>
+            <p class="post-meta"> Kategori: <a href="#">{{$article->getCategory->name}}</a>
                 <span class="float-right">{{$article->created_at->diffForHumans()}}</span>
             </p>
         </div>

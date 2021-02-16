@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 // Models
-use App\Models\Category;
 use App\Models\Article;
+use App\Models\Category;
 
 class Homepage extends Controller
 {
@@ -19,7 +19,7 @@ class Homepage extends Controller
 
     public function single($category,$slug){
 
-        Category::where('slug',$category)->first() ?? abort(403,'Böyle bir kategori henüz eklenmedi.');
+        $category=Category::where('slug',$category)->first() ?? abort(403,'Böyle bir kategori henüz eklenmedi.');
         $article=Article::where('slug',$slug)->first() ?? abort(403,'Böyle bir yazı henüz yazılmadı.');
         //dd($article);
         $article->increment('hit');
