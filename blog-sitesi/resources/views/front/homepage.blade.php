@@ -23,10 +23,14 @@
         <hr>
         @endif
         @endforeach
-        <!-- Pager -->
+
+        {{$articles->links()}} <!-- pagination için / hangi değişken içinde yaptıysak onu yazıyoruz. -->
+
+        <!-- Pager 
         <div class="clearfix">
             <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
         </div>
+        -->
     </div>
     @include('front.widgets.categoryWidget')
     @endsection
