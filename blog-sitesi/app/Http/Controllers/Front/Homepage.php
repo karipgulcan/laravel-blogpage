@@ -32,7 +32,7 @@ class Homepage extends Controller
     public function category($slug){
         $category=Category::where('slug',$slug)->first() ?? abort(403,'Böyle bir kategori henüz eklenmedi.');
         $data['category']=$category;
-        $data['articles']=Article::where('category_id', $category->id)->orderBy('created_at','DESC')->get();
+        $data['articles']=Article::where('category_id', $category->id)->orderBy('created_at','DESC')->paginate(2);
         $data['categories']=Category::inRandomOrder()->get();
         return view('front.category',$data);
     }
