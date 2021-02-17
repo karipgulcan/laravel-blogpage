@@ -20,9 +20,7 @@
 @endif
 @endforeach
 
-<div class="float-center">
     {{$articles->links()}}
-</div>
 
 
 @else
