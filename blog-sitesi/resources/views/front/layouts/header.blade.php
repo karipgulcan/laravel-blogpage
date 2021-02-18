@@ -2,7 +2,6 @@
 <html lang="tr">
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -43,15 +42,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('homepage')}}">Anasayfa</a>
                     </li>
+                    @foreach($pages as $page)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('page',$page->slug)}}">{{$page->title}}</a>
+                    </li>
+                    @endforeach
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="post.html">Sample Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
+                    
+                 
                 </ul>
             </div>
         </div>
