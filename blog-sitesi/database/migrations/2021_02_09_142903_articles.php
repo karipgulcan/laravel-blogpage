@@ -15,7 +15,7 @@ class Articles extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('category_id')->unsigned(); // category alanı categories tablomuzla ilişkili olduğu için unsigned sayesinde bağlantı kuracağız.
+            $table->unsignedBigInteger('category_id')->unsigned(); // category alanı categories tablomuzla ilişkili olduğu için unsigned sayesinde bağlantı kuracağız.
             $table->string('title');
             $table->string('image');
             $table->longText('content');
