@@ -1,4 +1,5 @@
 @extends('back.layouts.master')
+@section('title','Panel')
 @section('content')
 <!-- Content Row -->
 <div class="row">
