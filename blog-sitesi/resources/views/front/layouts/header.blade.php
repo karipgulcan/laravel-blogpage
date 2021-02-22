@@ -42,13 +42,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('homepage')}}">Anasayfa</a>
                     </li>
+                    <!--
                     @foreach($pages as $page)
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('page',$page->slug)}}">{{$page->title}}</a>
                     </li>
                     @endforeach
+                    -->
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="{{route('contact')}}">İletişim</a>
                     </li>
                     
                  

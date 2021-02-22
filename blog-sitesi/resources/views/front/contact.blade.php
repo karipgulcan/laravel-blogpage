@@ -43,9 +43,9 @@
           <div class="form-group">
             <label>Konu</label>
             <select class="form-control"  name="topic">
-              <option value="Bilgi" @if(old('topic')=="Bilgi") selected @endif>Bilgi</option>
-              <option value="Destek" @if(old('topic')=="Destek") selected @endif>Destek</option>
-              <option value="Genel" @if(old('topic')=="Genel") selected @endif>Genel</option>
+              <option value="1" @if(old('topic')=="Bilgi") selected @endif>Bilgi</option>  // value kısmını istediğimiz şekilde yazabiliriz . int ya da string
+              <option value="2" @if(old('topic')=="Destek") selected @endif>Destek</option>
+              <option value="3" @if(old('topic')=="Genel") selected @endif>Genel</option>
             </select>
           </div>
         </div>

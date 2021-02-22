@@ -76,7 +76,7 @@ class Homepage extends Controller
             //print_r($validate->errors()->first('message'));
 
         }
-        die;
+        //die;
 
         $contact = new Contact;
         $contact->name=$request->name;
