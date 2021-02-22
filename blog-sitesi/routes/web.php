@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('admin/panel','App\Http\Controllers\Back\Dashboard@index')->name('admin.dashboard');
+Route::get('admin/giris','App\Http\Controllers\Back\Auth@login')->name('admin.login');
 
 
 
