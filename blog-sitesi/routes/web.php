@@ -4,21 +4,26 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Backend Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
 |
 */
 
+Route::get('admin/panel','App\Http\Controllers\Back\Dashboard@index')->name('admin.dashboard');
 
-/* Nomalde bu şekilde kullanılıyor. Ama Controllerdan çalıştırmak istiyorsak yani dinamik bir şeyler yapıyorsak aşağıdaki şekilde kullanıyoruz.
-Route::get('/', function () {
-    return view('front.homepage');
-});
 
+
+/*
+|--------------------------------------------------------------------------
+| Front Routes
+|--------------------------------------------------------------------------
+|
+|
+|    Nomalde bu şekilde kullanılıyor. Ama Controllerdan çalıştırmak istiyorsak yani dinamik bir şeyler yapıyorsak aşağıdaki şekilde kullanıyoruz.
+|    Route::get('/', function () {
+|       return view('front.homepage');
+|    });
+|
 */
 
 Route::get('/','App\Http\Controllers\Front\Homepage@index')->name('homepage');
@@ -28,3 +33,5 @@ Route::post('/iletisim','App\Http\Controllers\Front\Homepage@contactpost')->name
 Route::get('/kategori/{category}', 'App\Http\Controllers\Front\Homepage@category')->name('category'); // bu satırı bir alta alınca çalışmıyor sebebi is kategoriler tablosunda arıyıor bulamıyor hata veriyor
 Route::get('/{category}/{slug}','App\Http\Controllers\Front\Homepage@single')->name('single');
 Route::get('/{sayfa}','App\Http\Controllers\Front\Homepage@page')->name('page');
+
+
