@@ -10,4 +10,9 @@ class Auth extends Controller
     public function login(){
         return view('back.auth.login');
     }
+
+    public function loginPost(Request $request){
+        
+        dd($request->post());
+    }
 }
