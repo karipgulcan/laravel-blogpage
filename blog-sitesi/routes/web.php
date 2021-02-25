@@ -8,10 +8,17 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 */
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('giris','App\Http\Controllers\Back\AuthController@login')->name('login');
+    Route::post('giris','App\Http\Controllers\Back\AuthController@loginPost')->name('login.post');
+});
+Route::prefix('admin')->name('admin.')->group(function () { //admin urlsini hepsine ekleyecek -> prefix ->>> ön ad
+    Route::get('panel','App\Http\Controllers\Back\Dashboard@index')->name('dashboard'); //aslında admin.dashboard
+    Route::get('cikis', 'App\Http\Controllers\Back\AuthController@logout')->name('logout'); 
+});
+//->middleware('isAdmin')
+//->middleware('isLogin')
 
-Route::get('admin/panel','App\Http\Controllers\Back\Dashboard@index')->name('admin.dashboard');
-Route::get('admin/giris','App\Http\Controllers\Back\AuthController@login')->name('admin.login');
-Route::post('admin/giris','App\Http\Controllers\Back\AuthController@loginPost')->name('admin.login.post');
 
 
 /*
