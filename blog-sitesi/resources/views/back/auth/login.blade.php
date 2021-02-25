@@ -42,6 +42,7 @@
                                         <h1 class="h4 text-gray-900 mb-4">Hoşgeldiniz</h1>
                                     </div>
                                     <form method="POST" action="{{route('admin.login.post')}}" class="user">
+                                        @csrf
                                         <div class="form-group">
                                             <input type="email" name="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
