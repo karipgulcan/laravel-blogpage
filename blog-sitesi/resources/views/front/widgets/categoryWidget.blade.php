@@ -6,7 +6,7 @@
         </div>
         <div class="list-group">
             @foreach($categories as $category)
-            <li class="list-group-item @if(Request::segment(2)==$category->slug) active @endif"> <!-- segment(2 yani eglenge) ==> http://127.0.0.1:8000/kategori/eglence -->
+            <li class="list-group-item @if(Request::segment(2)==$category->slug) active @endif"><!-- segment(2 yani eglenge) ==> http://127.0.0.1:8000/kategori/eglence -->
                 <a href="{{route('category',$category->slug)}}">{{$category->name}}</a>
                 <span class="badge bg-success float-right text-white">{{$category->articleCount()}}</span>
             </li>
