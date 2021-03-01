@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+//use Illuminate\Support\Facades\Route;
 
 /* Backend Routes */
 Route::prefix('admin')->name('admin.')->middleware('isLogin')->group(function () {
