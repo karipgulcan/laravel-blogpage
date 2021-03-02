@@ -19,39 +19,43 @@ class Homepage extends Controller
 {
     public function __construct(){
         
-        view()->share('pages',$data['pages']=Page::orderBy('order','ASC')->get()); //bu data tüm viewlerde çalışıyor
-        view()->share('categories',$data['categories']=Category::inRandomOrder()->get()); 
+        view()->share('pages',$data['pages']=Page::orderBy('order','ASC')->get()); 
+        view()->share('categories', $data['categories']=Category::inRandomOrder()->get()); 
     }
 
     public function index(){
-        
         $data['articles']=Article::orderBy('created_at','DESC')->paginate(2);
         $data['articles']->withPath(url('/sayfa'));
-        return view('front.homepage',$data);
+        return view('front.homepage', $data);
     }
 
     public function single($category,$slug){
 
         $category=Category::where('slug',$category)->first() ?? abort(403,'Böyle bir kategori henüz eklenmedi.');
         $article=Article::where('slug',$slug)->first() ?? abort(403,'Böyle bir yazı henüz yazılmadı.');
-        $article->increment('hit');
-        $data['article']=$article;
-        return view('front.single',$data);
+        $article->increment('hit'); 
+        return view('front.single', [
+            'article' => $article
+        ]); 
     }
 
     public function category($slug){
 
-        $category=Category::where('slug',$slug)->first() ?? abort(403,'Böyle bir kategori henüz eklenmedi.');
-        $data['category']=$category;
-        $data['articles']=Article::where('category_id', $category->id)->orderBy('created_at','DESC')->paginate(2);
-        return view('front.category',$data);
+        $category = Category::where('slug',$slug)->first() 
+                    ?? abort(403,'Böyle bir kategori henüz eklenmedi.');
+        return view('front.category', [
+            'category' => $category,
+            'articles' => Article::where('category_id', $category->id)
+                            ->orderBy('created_at','DESC')
+                            ->paginate(2)
+        ]);
     }
 
     public function page($slug){
 
         $page=Page::where('slug',$slug)->first() ?? abort(403,'Böyle bir sayfa bulunamadı.');
         $data['page']=$page;
-        return view('front.page',$data);
+        return view('front.page', $data);
     }
 
     public function contact(){
@@ -68,7 +72,7 @@ class Homepage extends Controller
         ];
 
 
-        $validate=Validator::make($request->post(),$rules); // olan değerlerin kontrollerini sağlıyor
+        $validate=Validator::make($request->post(),$rules);
 
         if($validate->fails()){
 
