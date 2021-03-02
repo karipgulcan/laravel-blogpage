@@ -11,6 +11,8 @@ Route::prefix('admin')->name('admin.')->middleware('isAdmin')->group(function ()
     Route::get('panel','App\Http\Controllers\Back\Dashboard@index')->name('dashboard'); //aslında admin.dashboard
     Route::get('cikis', 'App\Http\Controllers\Back\AuthController@logout')->name('logout'); 
 });
+
+
 //->middleware('isAdmin')
 //->middleware('isLogin')
 
