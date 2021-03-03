@@ -4,14 +4,18 @@
 
 /* Backend Routes */
 
-    Route::get('admin/giris','App\Http\Controllers\Back\AuthController@login')->name('admin.login');
-    Route::post('admin/giris','App\Http\Controllers\Back\AuthController@loginPost')->name('admin.login.post');
+Route::get('admin/panel','App\Http\Controllers\Back\Dashboard@index')->name('admin.dashboard'); //aslında admin.dashboard
+Route::get('admin/cikis','App\Http\Controllers\Back\AuthController@logout')->name('admin.logout'); 
+Route::get('admin/giris','App\Http\Controllers\Back\AuthController@login')->name('admin.login');
+Route::post('admin/giris','App\Http\Controllers\Back\AuthController@loginPost')->name('admin.login.post');
 
+
+/*
 Route::prefix('admin')->name('admin.')->middleware('isAdmin')->group(function () { //admin urlsini hepsine ekleyecek -> prefix ->>> ön ad 
     Route::get('panel','App\Http\Controllers\Back\Dashboard@index')->name('dashboard'); //aslında admin.dashboard
     Route::get('cikis', 'App\Http\Controllers\Back\AuthController@logout')->name('logout'); 
-});
-
+})
+*/
 
 
 //->middleware('isAdmin')
