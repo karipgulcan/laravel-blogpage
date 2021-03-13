@@ -1,14 +1,29 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\isAdmin;
+use App\Http\Middleware\isLogin;
 //use Illuminate\Support\Facades\Route;
 
 /* Backend Routes */
 
-Route::get('admin/panel','App\Http\Controllers\Back\Dashboard@index')->name('admin.dashboard'); //aslında admin.dashboard
-Route::get('admin/cikis','App\Http\Controllers\Back\AuthController@logout')->name('admin.logout'); 
-Route::get('admin/giris','App\Http\Controllers\Back\AuthController@login')->name('admin.login');
-Route::post('admin/giris','App\Http\Controllers\Back\AuthController@loginPost')->name('admin.login.post');
+Route::prefix('admin')->name('admin.')->middleware('isLogin')->group(function () {
+    Route::get('giris','App\Http\Controllers\Back\AuthController@login')->name('login');
+    Route::post('giris','App\Http\Controllers\Back\AuthController@loginPost')->name('login.post');
+});
 
+Route::prefix('admin')->name('admin.')->middleware('isAdmin')->group(function () { //admin urlsini hepsine ekleyecek -> prefix ->>> ön ad 
+    Route::get('panel','App\Http\Controllers\Back\Dashboard@index')->name('dashboard'); //aslında admin.dashboard
+    Route::get('cikis', 'App\Http\Controllers\Back\AuthController@logout')->name('logout'); 
+});
+
+/*  
+Route::middleware([isLogin::class])->group(function () {
+    Route::get('admin.giris',[AuthController::class, 'admin.login']);
+    Route::post('admin.giris',[AuthControllerme::class,'admin.login.post']);
+});
+
+*/
 
 /*
 Route::prefix('admin')->name('admin.')->middleware('isAdmin')->group(function () { //admin urlsini hepsine ekleyecek -> prefix ->>> ön ad 
@@ -43,5 +58,3 @@ Route::post('/iletisim','App\Http\Controllers\Front\Homepage@contactpost')->name
 Route::get('/kategori/{category}', 'App\Http\Controllers\Front\Homepage@category')->name('category'); // bu satırı bir alta alınca çalışmıyor sebebi is kategoriler tablosunda arıyıor bulamıyor hata veriyor
 Route::get('/{category}/{slug}','App\Http\Controllers\Front\Homepage@single')->name('single');
 Route::get('/{sayfa}','App\Http\Controllers\Front\Homepage@page')->name('page');
-
-
