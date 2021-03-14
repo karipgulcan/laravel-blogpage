@@ -18,9 +18,11 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
+        /*
         if(Auth::check()){ //Bu middleware admin grişi yapmadan panelin açılmasını engelleyecek.
             return redirect()->route('admin.login'); //Check metodu bir giriş olup olmadığını kontrol ediyor. Giriş yoksa yönlendiriyoruz. Varsa return edecek.
         }
+        */
         return $next($request);
     }
 }
