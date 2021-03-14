@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Route;
 
 /* Backend Routes */
 
-    Route::get('/admin/giris','\Back\AuthController@login')->name('admin.login')->middleware('isLogin');
-    Route::post('/admin/giris','\Back\AuthController@loginPost')->name('admin.login.post')->middleware('isLogin');
+    Route::get('/admin/giris','\Back\AuthController@login')->name('admin.login')->middleware(isLogin::class);
+    Route::post('/admin/giris','\Back\AuthController@loginPost')->name('admin.login.post')->middleware(isLogin::class);
 
-    Route::get('/admin/panel','\Back\Dashboard@index')->name('admin.dashboard')->middleware('isAdmin'); //aslında admin.dashboard
-    Route::get('/admin/cikis', '\Back\AuthController@logout')->name('admin.logout')->middleware('isAdmin'); 
+    Route::get('/admin/panel','\Back\Dashboard@index')->name('admin.dashboard')->middleware(isAdmin::class); //aslında admin.dashboard
+    Route::get('/admin/cikis', '\Back\AuthController@logout')->name('admin.logout')->middleware(isAdmin::class); 
 
 
 
