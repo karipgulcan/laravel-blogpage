@@ -3,58 +3,27 @@
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\isAdmin;
 use App\Http\Middleware\isLogin;
-//use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Back\AuthController;
+use App\Http\Controllers\Back\Dashboard;
+use Illuminate\Support\Facades\Route;
 
 /* Backend Routes */
 
-Route::prefix('admin')->name('admin.')->middleware('isLogin')->group(function () {
-    Route::get('giris','App\Http\Controllers\Back\AuthController@login')->name('login');
-    Route::post('giris','App\Http\Controllers\Back\AuthController@loginPost')->name('login.post');
-});
+    Route::get('/admin/giris','\Back\AuthController@login')->name('admin.login')->middleware('isLogin');
+    Route::post('/admin/giris','\Back\AuthController@loginPost')->name('admin.login.post')->middleware('isLogin');
 
-Route::prefix('admin')->name('admin.')->middleware('isAdmin')->group(function () { //admin urlsini hepsine ekleyecek -> prefix ->>> ön ad 
-    Route::get('panel','App\Http\Controllers\Back\Dashboard@index')->name('dashboard'); //aslında admin.dashboard
-    Route::get('cikis', 'App\Http\Controllers\Back\AuthController@logout')->name('logout'); 
-});
-
-/*  
-Route::middleware([isLogin::class])->group(function () {
-    Route::get('admin.giris',[AuthController::class, 'admin.login']);
-    Route::post('admin.giris',[AuthControllerme::class,'admin.login.post']);
-});
-
-*/
-
-/*
-Route::prefix('admin')->name('admin.')->middleware('isAdmin')->group(function () { //admin urlsini hepsine ekleyecek -> prefix ->>> ön ad 
-    Route::get('panel','App\Http\Controllers\Back\Dashboard@index')->name('dashboard'); //aslında admin.dashboard
-    Route::get('cikis', 'App\Http\Controllers\Back\AuthController@logout')->name('logout'); 
-})
-*/
-
-
-//->middleware('isAdmin')
-//->middleware('isLogin')
+    Route::get('/admin/panel','\Back\Dashboard@index')->name('admin.dashboard')->middleware('isAdmin'); //aslında admin.dashboard
+    Route::get('/admin/cikis', '\Back\AuthController@logout')->name('admin.logout')->middleware('isAdmin'); 
 
 
 
-/*
-|--------------------------------------------------------------------------
-| Front Routes
-|--------------------------------------------------------------------------
-|
-|
-|    Nomalde bu şekilde kullanılıyor. Ama Controllerdan çalıştırmak istiyorsak yani dinamik bir şeyler yapıyorsak aşağıdaki şekilde kullanıyoruz.
-|    Route::get('/', function () {
-|       return view('front.homepage');
-|    });
-|
-*/
 
-Route::get('/','App\Http\Controllers\Front\Homepage@index')->name('homepage');
-Route::get('/sayfa','App\Http\Controllers\Front\Homepage@index');
-Route::get('/iletisim','App\Http\Controllers\Front\Homepage@contact')->name('contact'); // sabit urlleri başta tanımlamamız gerekiyor.
-Route::post('/iletisim','App\Http\Controllers\Front\Homepage@contactpost')->name('contactpost');
-Route::get('/kategori/{category}', 'App\Http\Controllers\Front\Homepage@category')->name('category'); // bu satırı bir alta alınca çalışmıyor sebebi is kategoriler tablosunda arıyıor bulamıyor hata veriyor
-Route::get('/{category}/{slug}','App\Http\Controllers\Front\Homepage@single')->name('single');
-Route::get('/{sayfa}','App\Http\Controllers\Front\Homepage@page')->name('page');
+/* Front Routes */
+
+Route::get('/','\Front\Homepage@index')->name('homepage');
+Route::get('/sayfa','\Front\Homepage@index');
+Route::get('/iletisim','\Front\Homepage@contact')->name('contact'); // sabit urlleri başta tanımlamamız gerekiyor.
+Route::post('/iletisim','\Front\Homepage@contactpost')->name('contactpost');
+Route::get('/kategori/{category}', '\Front\Homepage@category')->name('category'); // bu satırı bir alta alınca çalışmıyor sebebi is kategoriler tablosunda arıyıor bulamıyor hata veriyor
+Route::get('/{category}/{slug}','\Front\Homepage@single')->name('single');
+Route::get('/{sayfa}','\Front\Homepage@page')->name('page');
