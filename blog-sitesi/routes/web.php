@@ -4,16 +4,24 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\isAdmin;
 use App\Http\Middleware\isLogin;
 use App\Http\Controllers\Back\AuthController;
+use App\Http\Controllers\Back\ArticleController;
 use App\Http\Controllers\Back\Dashboard;
 use Illuminate\Support\Facades\Route;
 
 /* Backend Routes */
+Route::prefix('admin')->name('admin.')->middleware(isLogin::class)->group(function(){
+    Route::get('giris','\Back\AuthController@login')->name('login');
+    Route::post('giris','\Back\AuthController@loginPost')->name('login.post');
+});
+    
 
-    Route::get('/admin/giris','\Back\AuthController@login')->name('admin.login')->middleware(isLogin::class);
-    Route::post('/admin/giris','\Back\AuthController@loginPost')->name('admin.login.post')->middleware(isLogin::class);
+Route::prefix('admin')->name('admin.')->middleware(isAdmin::class)->group(function(){
+    Route::get('panel','\Back\Dashboard@index')->name('dashboard'); //aslında admin.dashboard
+    Route::resource('makaleler','\Back\ArticleController@index');
+    Route::get('cikis', '\Back\AuthController@logout')->name('logout'); 
+});
 
-    Route::get('/admin/panel','\Back\Dashboard@index')->name('admin.dashboard')->middleware(isAdmin::class); //aslında admin.dashboard
-    Route::get('/admin/cikis', '\Back\AuthController@logout')->name('admin.logout')->middleware(isAdmin::class); 
+    
 
 
 
