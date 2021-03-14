@@ -46,7 +46,6 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        return $id;
         
     }
 
@@ -58,7 +57,7 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        return $id;
+        
     }
 
     /**
