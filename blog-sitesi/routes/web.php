@@ -17,7 +17,7 @@ Route::prefix('admin')->name('admin.')->middleware(isLogin::class)->group(functi
 
 Route::prefix('admin')->name('admin.')->middleware(isAdmin::class)->group(function(){
     Route::get('panel','\Back\Dashboard@index')->name('dashboard'); //aslında admin.dashboard
-    Route::resource('makaleler','\Back\ArticleController@index');
+    Route::get('makaleler',[ArticleController::class, 'index']);
     Route::get('cikis', '\Back\AuthController@logout')->name('logout'); 
 });
 
