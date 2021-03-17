@@ -7,6 +7,8 @@ use App\Http\Controllers\Back\AuthController;
 use App\Http\Controllers\Back\ArticleController;
 use App\Http\Controllers\Back\Dashboard;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Redirect;
+
 
 /* Backend Routes */
 Route::prefix('admin')->name('admin.')->middleware(isLogin::class)->group(function(){
@@ -17,9 +19,14 @@ Route::prefix('admin')->name('admin.')->middleware(isLogin::class)->group(functi
 
 Route::prefix('admin')->name('admin.')->middleware(isAdmin::class)->group(function(){
     Route::get('panel','\Back\Dashboard@index')->name('dashboard'); //aslında admin.dashboard
-    Route::get('makaleler',[ArticleController::class, 'index']);
+    //Route::resource('makaleler', [ArticleController::class]);
+    
     Route::get('cikis', '\Back\AuthController@logout')->name('logout'); 
 });
+
+Route::resource('admin/makaleler', ArticleController::class)->except([
+            'create', 'store', 'update', 'destroy'
+        ]);
 
     
 
