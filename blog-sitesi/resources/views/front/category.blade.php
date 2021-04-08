@@ -7,4 +7,5 @@
         @include('front.widgets.articleList')
     </div>
     @include('front.widgets.categoryWidget')
+    <!--Kernel Düzenlenecek -->
     @endsection
