@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
 {
@@ -14,7 +14,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return "index";
+        //return "index";
         //return view('back.articles.index');
     }
 
@@ -58,7 +58,7 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-
+        return $id;
     }
 
     /**
