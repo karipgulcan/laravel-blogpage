@@ -14,7 +14,6 @@ use App\Models\Page;
 use App\Models\Contact;
 
 
-
 class Homepage extends Controller
 {
     public function __construct(){
