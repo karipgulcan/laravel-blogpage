@@ -19,16 +19,16 @@ Route::prefix('admin')->name('admin.')->middleware(isLogin::class)->group(functi
 
 Route::prefix('admin')->name('admin.')->middleware(isAdmin::class)->group(function(){
     Route::get('panel','App\Http\Controllers\Back\Dashboard@index')->name('dashboard'); //aslında admin.dashboard
-    //Route::resource('makaleler', '\App\Http\Controllers\Back\ArticleController');
+    Route::resource('makaleler', '\App\Http\Controllers\Back\ArticleController');
     
     Route::get('cikis', 'App\Http\Controllers\Back\AuthController@logout')->name('logout'); 
 });
 
-
+/*
 Route::resource('admin/makaleler', ArticleController::class)->except([
             'create', 'store', 'update', 'destroy'
         ]);
-
+*/
     
 
 
