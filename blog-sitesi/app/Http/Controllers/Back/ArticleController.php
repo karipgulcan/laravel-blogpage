@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Back;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 
 class ArticleController extends Controller
 {
@@ -15,7 +16,8 @@ class ArticleController extends Controller
     public function index()
     {
         //return "index";
-        //return view('back.articles.index');
+        $articles=Article::orderBy('created_at','ASC')->get();
+        return view('back.articles.index',compact('articles'));
     }
 
     /**
@@ -58,7 +60,7 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        return $id;
+        return $id.'editte';
     }
 
     /**
