@@ -44,7 +44,6 @@
         </div>
     </div>
 </div>
-
 <!-- Bootstrap core JavaScript-->
 <script src="{{asset('back/')}}/vendor/jquery/jquery.min.js"></script>
 <script src="{{asset('back/')}}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -68,8 +67,9 @@
 
 <!-- Page level custom scripts -->
 <script src="{{asset('back/')}}/js/demo/datatables-demo.js"></script>
-
+@yield('js')
+@toastr_js
+@toastr_render  <!-- toastr paketinin js i -->
 
 </body>
-
 </html>
