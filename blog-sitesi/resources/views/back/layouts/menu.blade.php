@@ -39,8 +39,8 @@
                 <div id="collapseTwo" class="collapse @if(Request::segment(2)=="makaleler") show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Makale İşlemleri:</h6>
-                        <a class="collapse-item @if(Request::segment(2)=="makaleler") active @endif" href="{{route('admin.makaleler.index')}}">Tüm Makaleler</a>
-                        <a class="collapse-item" href="cards.html">Makale Oluştur</a>
+                        <a class="collapse-item @if(Request::segment(2)=="makaleler" and !Request::segment(3)) active @endif" href="{{route('admin.makaleler.index')}}">Tüm Makaleler</a>
+                        <a class="collapse-item @if(Request::segment(2)=="makaleler" and Request::segment(3)=="olustur") active @endif" href="{{route('admin.makaleler.create')}}">Makale Oluştur</a>
                     </div>
                 </div>
             </li>
