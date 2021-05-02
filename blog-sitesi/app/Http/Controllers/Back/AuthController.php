@@ -18,6 +18,7 @@ class AuthController extends Controller
 
         //dd($request->post());
         if(Auth::attempt(['email' =>$request->email, 'password' => $request->password])){
+            toastr()->success('Hoşgeldiniz ' .Auth::user()->name);
             return redirect()->route('admin.dashboard');
         }
         return redirect()->route('admin.login')->withErrors('Email adresi veya şifre hatalı');
