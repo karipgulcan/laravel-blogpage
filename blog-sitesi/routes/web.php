@@ -20,7 +20,7 @@ Route::prefix('admin')->name('admin.')->middleware(isLogin::class)->group(functi
 Route::prefix('admin')->name('admin.')->middleware(isAdmin::class)->group(function(){
     Route::get('panel','App\Http\Controllers\Back\Dashboard@index')->name('dashboard'); //aslında admin.dashboard
     Route::resource('makaleler', '\App\Http\Controllers\Back\ArticleController');
-    
+    Route::get('/switch/{id}','\App\Http\Controllers\Back\ArticleController')->name('switch');
     Route::get('cikis', 'App\Http\Controllers\Back\AuthController@logout')->name('logout'); 
 });
 
