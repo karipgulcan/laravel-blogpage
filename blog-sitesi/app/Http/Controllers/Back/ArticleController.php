@@ -85,7 +85,12 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        return $id.'editte';
+        $article=Article::findOrFail($id); //gelen id yi alıyor
+        //dd($makale);
+        //return $id.'editte';
+
+        $categories=Category::all();
+        return view('back.articles.update', compact('categories','article'));
     }
 
     /**
@@ -97,7 +102,30 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //return "geldi";
+
+        $request->validate([
+            'title'=>'min:3',
+            'image'=>'image|mimes:jpeg,png,jpg|min:100'
+        ]);
+
+        //dd($request->post());
+        $article=Article::findOrFail($id);
+
+        $article->title=$request->title;
+        $article->category_id=$request->category;
+        $article->content=$request->content;
+        $article->slug=Str::slug($request->title);//url yi uyumlu hale getirip kaydedecek
+
+        if($request->hasFile('image')){
+            $imageName=Str::slug($request->title).'.'.$request->image->getClientOriginalExtension();
+            $request->image->move(public_path('uploads'),$imageName);
+            $article->image='http://localhost:8000/uploads/'.$imageName;
+        }
+
+        $article->save();
+        toastr()->success('Başarılı', 'Makale başarı ile güncellendi');
+        return redirect()->route('admin.makaleler.index');
     }
 
     /**
