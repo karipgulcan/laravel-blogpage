@@ -59,11 +59,9 @@
         $('.switch').change(function () {
             id = $(this. [0]).getAttribute('article-id');
             $.get("{{route('admin.switch')}}", {id:id} function (data, status) {
-                console.log(data)
+                console.log(data);
             });
         })
     })
-
 </script>
-
 @endsection
