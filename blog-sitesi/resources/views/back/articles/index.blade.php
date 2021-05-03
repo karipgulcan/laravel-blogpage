@@ -57,9 +57,11 @@
 <script>
     $(function () {
         $('.switch').change(function () {
-            id = $(this. [0]).getAttribute('article-id');
-            $.get("{{route('admin.switch')}}", {id:id} function (data, status) {
-                console.log(data);
+            id = $(this)[0].getAttribute('article-id');
+            statu = $(this).prop('checked');
+            //alert(statu); return;
+            $.get("{{route('admin.switch')}}", {id:id,statu:statu}, function (data, status) {
+                //console.log(data); 
             });
         })
     })
