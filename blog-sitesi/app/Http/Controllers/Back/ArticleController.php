@@ -128,6 +128,10 @@ class ArticleController extends Controller
         return redirect()->route('admin.makaleler.index');
     }
 
+    public function switch($id){
+        return $id;
+    }
+
     /**
      * Remove the specified resource from storage.
      *
