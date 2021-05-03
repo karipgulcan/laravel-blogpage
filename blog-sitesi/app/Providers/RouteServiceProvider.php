@@ -49,7 +49,8 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         Route::resourceVerbs([
-            'create' => 'olustur'
+            'create' => 'olustur',
+            'edit' => 'guncelle'
           ]); 
     }
 
