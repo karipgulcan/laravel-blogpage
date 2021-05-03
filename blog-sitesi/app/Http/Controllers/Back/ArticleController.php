@@ -128,8 +128,11 @@ class ArticleController extends Controller
         return redirect()->route('admin.makaleler.index');
     }
 
-    public function switch($id){
-        return $id;
+    public function switch(Request $request){
+        //return $request->id;
+        $article=Article::findOrFail($request->id);
+        $article->status=$request->statu=="true" ? 1 : 0 ; // if($request->statu =='1' ..... olayının kısaltılmış hali) string olduğu için
+        $article->save();
     }
 
     /**
