@@ -33,7 +33,7 @@
                         <td>{{$article->created_at->diffForHumans()}}</td>
                         <td>
                             <a href="{{route('admin.recover.article',$article->id)}}" title="Geri Getir" class="btn btn-sm btn-primary"><i class="fa fa-recycle"></i></a>
-                            <a href="{{route('admin.delete.article',$article->id)}}" title="Sil" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
+                            <a href="{{route('admin.hard.delete.article',$article->id)}}" title="Sil" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
                     @endforeach
