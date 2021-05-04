@@ -157,7 +157,7 @@ class ArticleController extends Controller
     public function recover($id){
         Article::onlyTrashed()->find($id)->restore(); //restore sayesinde direkt geri getiriliyoryani deleted_at tarihi null olarak set ediliyor
         toastr()->success('Makale başarıyla kurtarıldı.');
-        return redirect()->route('admin.makaleler.index');
+        return redirect()->back();
     }
 
     public function destroy($id)
