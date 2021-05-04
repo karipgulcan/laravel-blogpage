@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\File;
 
 class ArticleController extends Controller
 {
@@ -44,7 +44,7 @@ class ArticleController extends Controller
     {
         $request->validate([
             'title'=>'min:3',
-            'image'=>'required|image|mimes:jpeg,png,jpg|min:100'
+            'image'=>'required|image|mimes:jpeg,png,jpg|max:1500'
         ]);
 
         //dd($request->post());
@@ -88,7 +88,6 @@ class ArticleController extends Controller
         $article=Article::findOrFail($id); //gelen id yi alıyor
         //dd($makale);
         //return $id.'editte';
-
         $categories=Category::all();
         return view('back.articles.update', compact('categories','article'));
     }
@@ -103,12 +102,10 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
         //return "geldi";
-
         $request->validate([
             'title'=>'min:3',
-            'image'=>'image|mimes:jpeg,png,jpg|min:100'
+            'image'=>'image|mimes:jpeg,png,jpg|max:1500'
         ]);
-
         //dd($request->post());
         $article=Article::findOrFail($id);
 
@@ -144,7 +141,7 @@ class ArticleController extends Controller
     public function delete($id){
 
         Article::find($id)->delete();
-        toastr()->success('Makale başarıyla silindi');
+        toastr()->success('Makale, silinen makalelere taşındı');
         return redirect()->route('admin.makaleler.index');
     }
 
@@ -158,6 +155,16 @@ class ArticleController extends Controller
         Article::onlyTrashed()->find($id)->restore(); //restore sayesinde direkt geri getiriliyoryani deleted_at tarihi null olarak set ediliyor
         toastr()->success('Makale başarıyla kurtarıldı.');
         return redirect()->back();
+    }
+
+    public function harddelete($id){
+        $article=Article::onlyTrashed()->find($id);
+        if(File::exists($article->image)){
+            File::delete(public_path($article->image));
+        }
+        $article->forceDelete(); //forceDelete sayesinde direkt veriyi siliyor 
+        toastr()->success('Makale başarıyla silindi');
+        return redirect()->route('admin.makaleler.index');
     }
 
     public function destroy($id)
