@@ -141,8 +141,27 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function delete($id){
+
+        Article::find($id)->delete();
+        toastr()->success('Makale başarıyla silindi');
+        return redirect()->route('admin.makaleler.index');
+    }
+
+    public function trashed(){
+        
+        $articles=Article::onlyTrashed()->orderBy('deleted_at','desc')->get();
+        return view('back.articles.trashed', compact('articles'));
+    }
+
+    public function recover($id){
+        Article::onlyTrashed()->find($id)->restore(); //restore sayesinde direkt geri getiriliyoryani deleted_at tarihi null olarak set ediliyor
+        toastr()->success('Makale başarıyla kurtarıldı.');
+        return redirect()->route('admin.makaleler.index');
+    }
+
     public function destroy($id)
     {
-        //
+        //return $id;
     }
 }
