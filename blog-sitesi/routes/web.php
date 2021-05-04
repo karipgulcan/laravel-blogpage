@@ -19,12 +19,15 @@ Route::prefix('admin')->name('admin.')->middleware(isLogin::class)->group(functi
 
 Route::prefix('admin')->name('admin.')->middleware(isAdmin::class)->group(function(){
     Route::get('panel','App\Http\Controllers\Back\Dashboard@index')->name('dashboard'); //aslında admin.dashboard
+    //MAKALE ROUTE'S
     Route::get('makaleler/silinenler','\App\Http\Controllers\Back\ArticleController@trashed')->name('trashed.article');
     Route::resource('makaleler', '\App\Http\Controllers\Back\ArticleController');
     Route::get('/switch','\App\Http\Controllers\Back\ArticleController@switch')->name('switch');
     Route::get('/deletearticle/{id}','\App\Http\Controllers\Back\ArticleController@delete')->name('delete.article');
     Route::get('/harddeletearticle/{id}','\App\Http\Controllers\Back\ArticleController@harddelete')->name('hard.delete.article');
     Route::get('/recoverarticle/{id}','\App\Http\Controllers\Back\ArticleController@recover')->name('recover.article');
+    //CATEGORY ROUTE'S
+    Route::get('/kategoriler','\App\Http\Controllers\Back\CategoryController@index')->name('category.index');
     Route::get('cikis', 'App\Http\Controllers\Back\AuthController@logout')->name('logout'); 
 });
 
