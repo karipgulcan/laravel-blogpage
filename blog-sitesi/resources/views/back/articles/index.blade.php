@@ -38,7 +38,8 @@
                             checked @endif data-toggle="toggle">
                         </td>
                         <td>
-                            <a href="" title="Görüntüle" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>
+                            <!-- blank yan sayfada açmayı sağlıyor -->
+                            <a target="_blank" href="{{route('single',[$article->getCategory->slug,$article->slug])}}" title="Görüntüle" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>
                             <a href="{{route('admin.makaleler.edit',$article->id)}}" title="Düzenle"
                                 class="btn btn-sm btn-primary"><i class="fa fa-pen"></i></a>
                             <!-- <form method="post" action="{{route('admin.makaleler.destroy',$article->id)}}"> Bu şekildede kullanılıyor
