@@ -60,8 +60,11 @@
     $('#orders').sortable(({
         handle:'.handle',
         update:function(){
-           var siralama= $('orders').sortable('serialize');
-           console.log(siralama);
+           var siralama= $('#orders').sortable('serialize');
+           //console.log(siralama);
+           $.get("{{route('admin.page.orders')}}",{orders:siralama},function(data,status) {
+               console.log(data);
+           });
         }
     }));
 </script>
