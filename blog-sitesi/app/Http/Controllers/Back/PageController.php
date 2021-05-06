@@ -14,6 +14,11 @@ class PageController extends Controller
         $pages=Page::all();
         return view('back.pages.index',compact('pages'));
     }
+
+    public function orders(Request $request){
+        print_r($request->get('orders'));
+    }
+
     public function create(){
         return view('back.pages.create');
     } 
