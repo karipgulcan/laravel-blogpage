@@ -29,7 +29,18 @@ Route::prefix('admin')->name('admin.')->middleware(isAdmin::class)->group(functi
     //CATEGORY ROUTE'S
     Route::get('/kategoriler','\App\Http\Controllers\Back\CategoryController@index')->name('category.index');
     Route::get('/kategoriler/create','\App\Http\Controllers\Back\CategoryController@create')->name('category.create');
+    Route::get('/kategoriler/update','\App\Http\Controllers\Back\CategoryController@update')->name('category.update');
+    Route::get('/kategoriler/delete','\App\Http\Controllers\Back\CategoryController@delete')->name('category.delete');
     Route::get('/kategori/status','\App\Http\Controllers\Back\CategoryController@switch')->name('category.switch');
+    Route::get('/kategori/getData','\App\Http\Controllers\Back\CategoryController@getData')->name('category.getdata');
+    //PAGES ROUTE'S
+    Route::get('/sayfalar','\App\Http\Controllers\Back\PageController@index')->name('page.index');
+    Route::get('/sayfalar/olustur','\App\Http\Controllers\Back\PageController@create')->name('page.create');
+    Route::get('/sayfalar/guncelle/{id}','\App\Http\Controllers\Back\PageController@update')->name('page.edit');
+    Route::post('/sayfalar/guncelle/{id}','\App\Http\Controllers\Back\PageController@updatePost')->name('page.edit.post');
+    Route::post('/sayfalar/olustur','\App\Http\Controllers\Back\PageController@post')->name('page.create.post');
+    Route::get('/sayfa/switch','\App\Http\Controllers\Back\PageController@switch')->name('page.switch');
+    Route::get('/sayfalar/sil/{id}','\App\Http\Controllers\Back\PageController@delete')->name('page.delete');
     //AUTH ROUTE
     Route::get('cikis', 'App\Http\Controllers\Back\AuthController@logout')->name('logout'); 
 });
