@@ -72,6 +72,16 @@ class PageController extends Controller
         return redirect()->route('admin.page.index');
     }
 
+    public function delete($id){
+        $page=Page::find($id);
+        if(File::exists($page->image)){
+            File::delete(public_path($page->image));
+        }
+        $page->delete(); 
+        toastr()->success('Sayfa başarıyla silindi');
+        return redirect()->route('admin.page.index');
+    }
+
     public function switch(Request $request){
         //return $request->id;
         $page=Page::findOrFail($request->id);
