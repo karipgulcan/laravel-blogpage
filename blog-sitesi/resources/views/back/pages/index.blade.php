@@ -8,6 +8,9 @@
         </h6>
     </div>
     <div class="card-body">
+        <div id="orderSuccess" style="display:none;" class="alert alert-success">
+            Sıralama başarıyla değiştirildi.
+        </div>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
@@ -62,8 +65,14 @@
         update:function(){
            var siralama= $('#orders').sortable('serialize');
            //console.log(siralama);
-           $.get("{{route('admin.page.orders')}}",{orders:siralama},function(data,status) {
-               console.log(data);
+           $.get("{{route('admin.page.orders')}}?"+siralama,function(data,status) {
+                
+                $("#orderSuccess").show();
+                setTimeout(function(){
+                    $("#orderSuccess").hide();},
+                    1000
+                    );
+               //console.log(data);
            });
         }
     }));
