@@ -16,7 +16,11 @@ class PageController extends Controller
     }
 
     public function orders(Request $request){
-        print_r($request->get('orders'));
+        //print_r($request->get('orders'));
+        //dd($request->get('page'));
+        foreach($request->get('page') as $key=>$order){
+            Page::where('id',$order)->Update(['order'=>$key]);
+        }
     }
 
     public function create(){
