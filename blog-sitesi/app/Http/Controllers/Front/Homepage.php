@@ -80,20 +80,20 @@ class Homepage extends Controller
             //print_r($validate->errors()->first('message'));
 
         }
-        /*
+        
         Mail::raw('Mesajı Göderen:'.$request->name.'
                    Mesajı Gönderen Mail:'.$request->email. '
                    Mesaj Konusu: '.$request->topic. '
                    Mesaj : '.$request->message. '
-                   Mesaj Gönderilme Tarihi: '.$request->created_at. '',function($message) use($request){
+                   Mesaj Gönderilme Tarihi: '.now(). '',function($message) use($request){
 
                     $message->from('blog@gulcankarip.com','Blog Sitesi');
                     $message->to('karipgulcan@gmail.com');
                     $message->subject($request->name. ' iletişimden mesaj gönderdi');
         });
-        */
-          
-        Mail::raw([],[],function($message) use($request){
+        
+        /*
+        Mail::raw([],[], function($message) use($request){
             $message->from('blog@gulcankarip.com','Blog Sitesi');
             $message->to('karipgulcan@gmail.com');
             $message->setBody('Mesajı Göderen:'.$request->name.'
@@ -104,6 +104,7 @@ class Homepage extends Controller
             $message->subject($request->name. ' iletişimden mesaj gönderdi');
             
         });
+        */
         
         //die;
 
