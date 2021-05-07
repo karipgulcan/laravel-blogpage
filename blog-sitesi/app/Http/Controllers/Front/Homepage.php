@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Mail;
 
 use Validator;
 
@@ -79,14 +80,39 @@ class Homepage extends Controller
             //print_r($validate->errors()->first('message'));
 
         }
+        /*
+        Mail::raw('Mesajı Göderen:'.$request->name.'
+                   Mesajı Gönderen Mail:'.$request->email. '
+                   Mesaj Konusu: '.$request->topic. '
+                   Mesaj : '.$request->message. '
+                   Mesaj Gönderilme Tarihi: '.$request->created_at. '',function($message) use($request){
+
+                    $message->from('blog@gulcankarip.com','Blog Sitesi');
+                    $message->to('karipgulcan@gmail.com');
+                    $message->subject($request->name. ' iletişimden mesaj gönderdi');
+        });
+        */
+          
+        Mail::raw([],[],function($message) use($request){
+            $message->from('blog@gulcankarip.com','Blog Sitesi');
+            $message->to('karipgulcan@gmail.com');
+            $message->setBody('Mesajı Göderen:'.$request->name.'
+                Mesajı Gönderen Mail:'.$request->email. '<br/>
+                Mesaj Konusu: '.$request->topic. '<br/>
+                Mesaj : '.$request->message. '<br/><br/>
+                Mesaj Gönderilme Tarihi: '.now(). '','text/html');
+            $message->subject($request->name. ' iletişimden mesaj gönderdi');
+            
+        });
+        
         //die;
 
-        $contact = new Contact;
-        $contact->name=$request->name;
-        $contact->email=$request->email;
-        $contact->topic=$request->topic;
-        $contact->message=$request->message;
-        $contact->save();
+       // $contact = new Contact;
+       // $contact->name=$request->name;
+       // $contact->email=$request->email;
+       // $contact->topic=$request->topic;
+       // $contact->message=$request->message;
+       // $contact->save();
         return redirect()->route('contactpost')->with('success','Mesajınız bize iletildi.'); //iletişim sayfasının url si
         //print_r($request->post());
     }
