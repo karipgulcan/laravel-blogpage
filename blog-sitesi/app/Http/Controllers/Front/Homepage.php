@@ -19,12 +19,15 @@ class Homepage extends Controller
 {
     public function __construct(){
         
-        view()->share('pages',$data['pages']=Page::orderBy('order','ASC')->get()); 
-        view()->share('categories', $data['categories']=Category::inRandomOrder()->get()); 
+        view()->share('pages',$data['pages']=Page::where('status',1)->orderBy('order','ASC')->get()); 
+        view()->share('categories', $data['categories']=Category::where('status',1)->inRandomOrder()->get()); 
     }
 
     public function index(){
-        $data['articles']=Article::orderBy('created_at','DESC')->paginate(2);
+        $data['articles']=Article::with('getCategory')->where('status',1)->whereHas('getCategory',function($query){
+            $query->where('status',1);
+        })->orderBy('created_at','DESC')->paginate(6);
+        //dd($data['articles']);
         $data['articles']->withPath(url('/sayfa'));
         return view('front.homepage', $data);
     }
@@ -45,7 +48,7 @@ class Homepage extends Controller
                     ?? abort(403,'Böyle bir kategori henüz eklenmedi.');
         return view('front.category', [
             'category' => $category,
-            'articles' => Article::where('category_id', $category->id)
+            'articles' => Article::where('category_id', $category->id)->where('status',1)
                             ->orderBy('created_at','DESC')
                             ->paginate(2)
         ]);
